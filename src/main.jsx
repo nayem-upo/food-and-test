@@ -13,11 +13,14 @@ import ChefDetails from './Components/ChefDetails';
 import AuthProvider from './Components/AuthProvider';
 import Private from './Components/Private';
 import EditInfo from './Components/EditInfo';
+import ErrorPage from './Components/ErrorPage';
+import Blog from './Components/Blog';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layouts></Layouts>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
@@ -38,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/edit",
         element: <EditInfo></EditInfo>
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>
       },
     ]
   },

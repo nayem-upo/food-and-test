@@ -25,7 +25,7 @@ const Header = () => {
                     <Link className="btn btn-ghost normal-case text-xl" to="/">Food & Test</Link>
                 </div>
 
-                <div className='flex justify-evenly items-center gap-20'>
+                <div className='flex justify-center items-center gap-10 md:gap-20 me-6 md:me-0'>
                     <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold hover:text-[#60AA2D]"} to="/">Home</NavLink>
                     <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold hover:text-[#60AA2D]"} to="/blog">Blog</NavLink>
                 </div>
