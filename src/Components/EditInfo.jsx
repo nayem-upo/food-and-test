@@ -26,7 +26,7 @@ const EditInfo = () => {
 
     return (
         <div>
-            <div className={`${show?"":"hidden"} my-20 py-10 bg-[#e3fcca] w-[500px] mx-auto rounded-md`}>
+            <div className={`${show?"":"hidden"} my-20 py-10 bg-[#e3fcca] w-[90%] md:w-[500px] mx-auto rounded-md`}>
                 <div className=' text-center'> 
                     <h4 className=" text-3xl font-semibold  text-[#60AA2D] ">
                         Update Profile
@@ -60,7 +60,7 @@ const EditInfo = () => {
                             </label>
                         </div>
                     </div>
-                    <input className='mt-6 block w-full select-none rounded-lg bg-[#60AA2D] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#60AA2D]/20 transition-all hover:shadow-lg hover:shadow-[#60AA2D]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' type="submit" value="Update" />
+                    <input className='mt-6 block w-full select-none md:rounded-lg bg-[#60AA2D] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#60AA2D]/20 transition-all hover:shadow-lg hover:shadow-[#60AA2D]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' type="submit" value="Update" />
 
                 </form>
             </div>

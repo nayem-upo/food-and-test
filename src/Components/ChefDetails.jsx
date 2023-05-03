@@ -19,8 +19,8 @@ const ChefDetails = () => {
         <div className='z-0'>
             <div className="hero py-20 bg-[#F7F7F7]">
                 <div className="hero-content flex-col gap-10 lg:flex-row-reverse">
-                    <img src={picture} className="max-w-sm rounded-lg shadow-2xl" />
-                    <div className='w-96'>
+                    <img src={picture} className="max-w-sm w rounded-lg shadow-2xl w-80 md:w-full" />
+                    <div className='md:w-96 w-[90%]'>
                         <h1 className="text-5xl font-bold">{name}</h1>
                         <p className='font-bold'> <span className='text-[#60AA2D] font-extrabold'>{years_of_experience}</span> years of experience</p>
                         <p className="py-6">{bio}</p>
@@ -36,9 +36,9 @@ const ChefDetails = () => {
 
             <h1 className='font-bold text-center my-4 mt-10 text-5xl text-[#60AA2D]'>Cook yourself</h1>
             <h1 className='font-bold text-center my-4 text-2xl text-[#60AA2D]'>3 most popular recipes of the chef</h1>
-            <hr className="mb-16 w-[550px] mx-auto h-0.5 border-t-0 bg-[#60AA2D] opacity-100 dark:opacity-50" />
+            <hr className="mb-16 md:w-[550px] w-[94%] mx-auto h-0.5 border-t-0 bg-[#60AA2D] opacity-100 dark:opacity-50" />
 
-            <div className='flex justify-evenly'>
+            <div className='flex md:flex-row flex-col md:justify-evenly justify-center'>
                 {
                     recipes?.map(recipe => <Recipes recipe={recipe} key={recipe.name}></Recipes>)
                 }

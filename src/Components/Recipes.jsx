@@ -16,8 +16,8 @@ const Recipes = ({ recipe }) => {
     };
 
     return (
-        <div>
-            <div className='shadow-xl border-2 border-[#60AA2D] mb-20 h-[580px] w-96 flex flex-col justify-between'>
+        <div className='mx-auto'>
+            <div className='shadow-xl border-2 border-[#60AA2D] mb-20 h-[580px] w-[330px]  md:w-96 flex flex-col justify-between'>
                 <div>
                     <div>
                         <img src={image} className='  w-96 h-48 object-cover' alt="" />

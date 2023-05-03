@@ -1,16 +1,24 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+const ref = React.createRef();
+import Pdf from "react-to-pdf";
 
 const Blog = () => {
     return (
         <div className="bg-white">
-            <div className="md:mt-0 drop-shadow-xl bg-left-bottom bg-no-repeat md:py-20 py-10 text-center mx-auto bg-[#F9F9FF]" >
+            <div className="md:mt-0 drop-shadow-xl bg-left-bottom bg-no-repeat md:py-14 py-10 text-center mx-auto bg-[#F9F9FF]" >
                 <h1 className="md:text-5xl mx-2 text-2xl font-bold text-[#60AA2D]">
                     Answering some common questions:
                 </h1>
+            <div>
+                <Pdf targetRef={ref} filename="food-and-test.pdf">
+                    {({ toPdf }) => <button onClick={toPdf} className='btn bg-[#60AA2D] border-none text-white rounded mt-6 hover:bg-[#3b7b10]'>Download PDF</button>}
+                </Pdf>
             </div>
 
-            <div className="grid md:grid-cols-2 grid-cols-1 py-10 gap-8 md:py-20 mx-4 md:mx-32">
+            </div>
+
+            <div ref={ref} className="grid md:grid-cols-2 grid-cols-1 py-10 gap-8 md:py-20 mx-4 md:mx-32">
                 <div className="border-4 rounded-2xl p-6 border-[#A1CD44] shadow-xl bg-[#9582ff10]">
                     <h1 className="text-2xl">Differences between uncontrolled and controlled components.</h1>
                     <p className="text-xl">
