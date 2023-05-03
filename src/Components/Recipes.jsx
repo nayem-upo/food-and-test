@@ -9,7 +9,11 @@ const Recipes = ({ recipe }) => {
     const { name, ingredients, cooking_method, rating, image } = recipe;
     const [able, setAble] = useState('')
     const [color, setColor] = useState('text-[#60AA2D]')
-    
+    const notify = () => {
+        toast('💚Added the recipe as your favorite!')
+        setAble('btn-disabled bg-white')
+        setColor('text-[#D5D5D5]')
+    };
 
     return (
         <div>
