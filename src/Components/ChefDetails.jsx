@@ -16,7 +16,7 @@ const ChefDetails = () => {
             .then(data => setDetail(data))
     }, [id])
     return (
-        <div>
+        <div className='z-0'>
             <div className="hero py-20 bg-[#F7F7F7]">
                 <div className="hero-content flex-col gap-10 lg:flex-row-reverse">
                     <img src={picture} className="max-w-sm rounded-lg shadow-2xl" />

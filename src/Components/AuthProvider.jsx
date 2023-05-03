@@ -20,6 +20,9 @@ const AuthProvider = ({ children }) => {
     const loginUser = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
+    const handleScroll = () => {
+        ref.current?.scrollIntoView({ behavior: 'smooth' })
+    }
 
     const logOut = () => {
         signOut(auth)
@@ -47,6 +50,9 @@ const AuthProvider = ({ children }) => {
         user,
         auth,
         logOut,
+        loading,
+        ref,
+        handleScroll,
     }
 
     return (

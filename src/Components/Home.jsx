@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import MainBanner from './MainBanner';
 import Chefs from './Chefs';
 import FootBanner from './FootBanner';
+import { AuthContext } from './AuthProvider';
 
 const Home = () => {
     return (

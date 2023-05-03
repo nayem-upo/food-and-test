@@ -11,6 +11,8 @@ import Register from './Components/Register';
 import Home from './Components/Home';
 import ChefDetails from './Components/ChefDetails';
 import AuthProvider from './Components/AuthProvider';
+import Private from './Components/Private';
+import EditInfo from './Components/EditInfo';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <ChefDetails></ChefDetails>
+        element: <Private><ChefDetails></ChefDetails></Private>
+      },
+      {
+        path: "/edit",
+        element: <EditInfo></EditInfo>
       },
     ]
   },

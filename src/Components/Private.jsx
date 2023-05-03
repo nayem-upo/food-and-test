@@ -1,4 +1,8 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, { useContext } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
 
 const Private = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
@@ -6,8 +10,8 @@ const Private = ({ children }) => {
     const location = useLocation()
 
     if (loading) {
-        return <div className='h-[600px] flex mb-96 bg-white justify-center'>
-            <progress className="progress md:w-[600px] w-[80%] my-auto"></progress>
+        return <div className='text-center my-[200px]'>
+            <progress className="progress w-[50%]"></progress>
         </div>
     }
 

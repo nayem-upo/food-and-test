@@ -20,8 +20,8 @@ const Header = () => {
     }
 
     return (
-        <div>
-            <div className="navbar bg-[#191f1325] flex items-center md:gap-20 justify-evenly">
+        <div className='sticky top-0 z-40'>
+            <div className="navbar sticky bg-[#EEFDDF] flex items-center md:gap-20 justify-evenly">
                 <div className="flex-1">
                     <Link className="btn btn-ghost normal-case text-xl" to="/">Food & Test</Link>
                 </div>
@@ -45,7 +45,12 @@ const Header = () => {
                                 </div>
                             </label>
                             <ul tabIndex={0} className="menu menu-compact dropdown-content p-2 shadow bg-[#191f1325] rounded-box w-52">
-                                <li className='p-3 bg-slate-100 text-[#60AA2D] font-semibold'>Name</li>
+                                <li className=' bg-slate-100 text-[#60AA2D] justify-between'>
+                                    <Link to="/edit" className="justify-between pt-3">
+                                        <span className=' font-bold text-base'>{displayName}</span>
+                                        <span className="badge bg-[#60AA2D] text-white border-none">Update</span>
+                                    </Link>
+                                </li>
                                 <hr />
                                 <li onClick={logOutUser} className='p-3 cursor-pointer text-red-600 font-bold bg-slate-100'>Logout</li>
                             </ul>
@@ -58,6 +63,7 @@ const Header = () => {
                 }
 
             </div>
+            <hr className="h-1 border-t-0 mx-auto bg-[#A1CD44] shadow-2xl opacity-100 " />
         </div>
     );
 };

@@ -2,9 +2,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { faAppleWhole, faCakeCandles, faCarrot, faDrumstickBite, faFishFins } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from './AuthProvider';
 
 const MainBanner = () => {
+    const { handleScroll } = useContext(AuthContext)
     return (
         <div>
 
@@ -45,7 +47,7 @@ const MainBanner = () => {
                     <p className='text-orange-500 font-semibold text-lg'>Thatix Introduction</p>
                     <h1 className='text-5xl font-bold'>Give yourself a lifetime of cooking confidence</h1>
                     <p className='my-5 font-semibold'>Cooking can be an intimidating task for many people, but it doesn't have to be. With the right mindset, tools, and knowledge, anyone can become a confident and skilled cook. The key is to approach cooking as a lifelong journey of learning and experimentation, rather than a daunting task to be mastered overnight.</p>
-                    <button className='bg-[#60AA2D] hover:bg-[#3b7b10] btn border-none text-white rounded'>Meet Chefs</button>
+                    <button onClick={handleScroll} className='bg-[#60AA2D] hover:bg-[#3b7b10] btn border-none text-white rounded'>Meet Chefs</button>
                 </div>
             </div>
 
