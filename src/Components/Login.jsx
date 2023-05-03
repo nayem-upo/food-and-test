@@ -1,13 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 
 const Login = () => {
-    const {loginUser}= useContext(AuthContext);
+    const { loginUser, googleLogin, gitHubLogin } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
 
     const handleLogin = (event) => {
@@ -15,10 +19,12 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
         loginUser(email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                navigate(from, { replace: true });
                 setError("")
                 setSuccess("Login successful")
             })
@@ -29,6 +35,33 @@ const Login = () => {
                 setSuccess("")
             });
 
+    }
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then((result) => {
+                const user = result.user;
+                navigate(from, { replace: true });
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+            });
+    }
+    const handleGithubLogin = () => {
+        gitHubLogin()
+            .then((result) => {
+                const user = result.user;
+                navigate(from, { replace: true });
+                setError("")
+                setSuccess("Login successful")
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setError(errorMessage)
+                setSuccess("")
+            });
     }
 
     return (
@@ -80,8 +113,8 @@ const Login = () => {
                     </form>
                     <div className='flex flex-col gap-3'>
                         <div className="divider my-0">OR</div>
-                        <button className='bg-[#5faa2d3d] hover:bg-[#60AA2D]  rounded-t-lg flex items-center gap-2 border justify-center p-2 w-[100%]'>  Sign In with Google</button>
-                        <button className='bg-[#5faa2d3d] hover:bg-[#60AA2D] rounded-b-lg flex items-center gap-2 border justify-center p-2 w-[100%]'>  Sign In with GitHub</button>
+                        <button onClick={handleGoogleLogin} className='bg-[#5faa2d3d] hover:bg-[#60AA2D]  rounded-t-lg flex items-center gap-2 border justify-center p-2 w-[100%]'>  Sign In with Google</button>
+                        <button onClick={handleGithubLogin} className='bg-[#5faa2d3d] hover:bg-[#60AA2D] rounded-b-lg flex items-center gap-2 border justify-center p-2 w-[100%]'>  Sign In with GitHub</button>
                     </div>
                 </div>
             </div>

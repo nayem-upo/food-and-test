@@ -2,13 +2,18 @@
 /* eslint-disable react/no-unescaped-entities */
 // eslint-disable-next-line no-unused-vars
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
 
-    const { createUser, auth } = useContext(AuthContext);
+    const { createUser, auth, googleLogin, gitHubLogin } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const [change, setChange] = useState(true);
     const [error, setError] = useState('');
@@ -24,29 +29,63 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photo = form.photo.value;
-        createUser(email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                setError("")
-                setSuccess("Your account created successfully")
-                updateProfile(auth.currentUser, {
-                    displayName: name, photoURL: photo
-                }).then(() => {
-                    // Profile updated!
-                    // ...
-                }).catch((error) => {
-                    // An error occurred
-                    // ...
+        if (password.length > 5) {
+            createUser(email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    navigate(from, { replace: true });
+                    setError("")
+                    updateProfile(auth.currentUser, {
+                        displayName: name, photoURL: photo
+                    }).then(() => {
+                        setSuccess("Your account created successfully")
+                        // Profile updated!
+                        // ...
+                    }).catch((error) => {
+                        // An error occurred
+                        // ...
+                    });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setError(errorMessage)
+                    setSuccess("")
                 });
-            })
-            .catch((error) => {
+
+        }
+        else{
+            setError("Password should be at least 6 characters")
+        }
+    }
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then((result) => {
+                const user = result.user;
+                navigate(from, { replace: true });
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+            });
+    }
+    const handleGithubLogin = () => {
+        gitHubLogin()
+            .then((result) => {
+                const user = result.user;
+                navigate(from, { replace: true });
+                setError("")
+                setSuccess("Login successful")
+            }).catch((error) => {
+                // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setError(errorMessage)
                 setSuccess("")
             });
-
     }
 
     return (
@@ -165,8 +204,8 @@ const Register = () => {
                 </form>
                 <div className='flex flex-col gap-3'>
                     <div className="text-center my-0">OR</div>
-                    <button className='bg-[#5faa2d3d] hover:bg-[#60AA2D]  rounded-t-lg flex items-center gap-2 border justify-center p-2 w-[100%]'> Sign Up with Google</button>
-                    <button className='bg-[#5faa2d3d] hover:bg-[#60AA2D] rounded-b-lg flex items-center gap-2 border justify-center p-2 w-[100%]'> Sign Up with GitHub</button>
+                    <button onClick={handleGoogleLogin} className='bg-[#5faa2d3d] hover:bg-[#60AA2D]  rounded-t-lg flex items-center gap-2 border justify-center p-2 w-[100%]'> Sign Up with Google</button>
+                    <button onClick={handleGithubLogin} className='bg-[#5faa2d3d] hover:bg-[#60AA2D] rounded-b-lg flex items-center gap-2 border justify-center p-2 w-[100%]'> Sign Up with GitHub</button>
                 </div>
             </div>
         </div>

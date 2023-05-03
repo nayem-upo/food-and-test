@@ -12,23 +12,22 @@ const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const displayName = user?.displayName;
     const photoURL = user?.photoURL;
-    console.log(displayName, photoURL);
 
     const logOutUser = () => {
-        logOut(),
-            navigate("/")
+        logOut();
+        navigate("/")
     }
 
     return (
-        <div className='sticky top-0 z-40'>
+        <div className='sticky top-0 z-40 shadow-xl'>
             <div className="navbar sticky bg-[#EEFDDF] flex items-center md:gap-20 justify-evenly">
                 <div className="flex-1">
                     <Link className="btn btn-ghost normal-case text-xl" to="/">Food & Test</Link>
                 </div>
 
                 <div className='flex justify-evenly items-center gap-20'>
-                    <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold"} to="/">Home</NavLink>
-                    <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold"} to="/blog">Blog</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold hover:text-[#60AA2D]"} to="/">Home</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold hover:text-[#60AA2D]"} to="/blog">Blog</NavLink>
                 </div>
                 {
                     user && <div className="flex-none">
@@ -45,14 +44,14 @@ const Header = () => {
                                 </div>
                             </label>
                             <ul tabIndex={0} className="menu menu-compact dropdown-content p-2 shadow bg-[#191f1325] rounded-box w-52">
-                                <li className=' bg-slate-100 text-[#60AA2D] justify-between'>
+                                <li className=' bg-slate-100 text-[#60AA2D] justify-between  hover:bg-slate-300'>
                                     <Link to="/edit" className="justify-between pt-3">
                                         <span className=' font-bold text-base'>{displayName}</span>
-                                        <span className="badge bg-[#60AA2D] text-white border-none">Update</span>
+                                        <span className="badge bg-[#60AA2D] text-white border-none">Edit</span>
                                     </Link>
                                 </li>
                                 <hr />
-                                <li onClick={logOutUser} className='p-3 cursor-pointer text-red-600 font-bold bg-slate-100'>Logout</li>
+                                <li onClick={logOutUser} className='p-3 hover:bg-slate-300 cursor-pointer text-red-600 font-bold bg-slate-100'>Logout</li>
                             </ul>
                         </div>
                     </div>
@@ -63,7 +62,7 @@ const Header = () => {
                 }
 
             </div>
-            <hr className="h-1 border-t-0 mx-auto bg-[#A1CD44] shadow-2xl opacity-100 " />
+            <hr className="h-1 border-t-0 mx-auto bg-[#A1CD44] opacity-100 " />
         </div>
     );
 };

@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { createContext, useEffect, useRef, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import app from '../firebase.config';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const auth = getAuth(app);
 export const AuthContext = createContext(null)
+const googleProvider = new GoogleAuthProvider();
+const gitHubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const ref = useRef(null)
@@ -23,7 +25,12 @@ const AuthProvider = ({ children }) => {
     const handleScroll = () => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
     }
-
+    const googleLogin = () => {
+        return signInWithPopup(auth, googleProvider)
+    }
+    const gitHubLogin = () => {
+        return signInWithPopup(auth, gitHubProvider)
+    }
     const logOut = () => {
         signOut(auth)
             .then(() => {
@@ -53,6 +60,8 @@ const AuthProvider = ({ children }) => {
         loading,
         ref,
         handleScroll,
+        googleLogin,
+        gitHubLogin,
     }
 
     return (

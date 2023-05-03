@@ -24,8 +24,8 @@ const Recipes = ({ recipe }) => {
                     </div>
                     <div className='px-3'>
                         <h1 className='text-xl font-semibold m-3'>{name}</h1>
-                        <p className='ms-3 font-semibold'>Ingredients: {ingredients.map(ingredient => <li key={ingredient}>{ingredient}</li>)}</p>
-                        <p className='ms-3 font-semibold'>Cooking Method: {cooking_method.slice(0, 170)}...</p>
+                        <p className='ms-3 font-semibold list-decimal'><span className='text-[#60AA2D] font-semibold'>Ingredients:</span> {ingredients.map(ingredient => <li key={ingredient}> {ingredient} </li>)}</p>
+                        <p className='ms-3 font-semibold'><span className='text-[#60AA2D] font-semibold'>Cooking Method:</span> {cooking_method.slice(0, 170)}...</p>
                     </div>
                 </div>
                 <div>
