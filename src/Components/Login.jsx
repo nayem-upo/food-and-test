@@ -1,11 +1,36 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
 
 const Login = () => {
+    const {loginUser}= useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+
+
+    const handleLogin = (event) => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        loginUser(email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                setError("")
+                setSuccess("Login successful")
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setError(errorMessage)
+                setSuccess("")
+            });
+
+    }
+
     return (
         <div className='text-center bg-[#F9F8FF] pb-14'>
             <div className='flex justify-center py-10'>
@@ -16,7 +41,7 @@ const Login = () => {
                     <p className="text-left mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                         Enter your login details to continue.
                     </p>
-                    <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+                    <form onSubmit={handleLogin} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                         <div className="mb-4 flex flex-col gap-6">
                             <div className="relative h-11 w-full min-w-[200px]">
                                 <input
@@ -30,7 +55,6 @@ const Login = () => {
                             <div className="relative h-11 w-full min-w-[200px] justify-center items-center flex">
                                 <div className='w-full'>
                                     <input
-                                        type={open}
                                         className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-[#60AA2D] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                         placeholder=" " name='password'
                                     />

@@ -3,39 +3,51 @@
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 // eslint-disable-next-line no-unused-vars
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
 
 const Header = () => {
-    const [user] = useState(null)
+    const navigate = useNavigate()
+    const { user, logOut } = useContext(AuthContext);
+    const displayName = user?.displayName;
+    const photoURL = user?.photoURL;
+    console.log(displayName, photoURL);
+
+    const logOutUser = () => {
+        logOut(),
+            navigate("/")
+    }
+
     return (
         <div>
             <div className="navbar bg-[#191f1325] flex items-center md:gap-20 justify-evenly">
                 <div className="flex-1">
-                    <Link  className="btn btn-ghost normal-case text-xl" to="/">Food & Test</Link>
+                    <Link className="btn btn-ghost normal-case text-xl" to="/">Food & Test</Link>
                 </div>
 
                 <div className='flex justify-evenly items-center gap-20'>
-                    <NavLink to="/" className="font-bold">Home</NavLink>
-                    <NavLink className="font-bold">Blog</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold"} to="/">Home</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "font-bold text-[#60AA2D]" : "font-bold"} to="/blog">Blog</NavLink>
                 </div>
                 {
                     user && <div className="flex-none">
                         <div className="dropdown dropdown-end dropdown-hover">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full mt-4">
+                                <div className="w-10 rounded-full ">
 
-                                    {/* {
-                                    user && <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                }
-                                {
-                                    !user && <FontAwesomeIcon icon={faUser} />
-                                } */}
+                                    {
+                                        photoURL && <img src={photoURL} />
+                                    }
+                                    {
+                                        !photoURL && <FontAwesomeIcon className='mt-3' icon={faUser} />
+                                    }
                                 </div>
                             </label>
-                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#191f1325] rounded-box w-52">
-                                <li>Name</li>
-                                <li>Logout</li>
+                            <ul tabIndex={0} className="menu menu-compact dropdown-content p-2 shadow bg-[#191f1325] rounded-box w-52">
+                                <li className='p-3 bg-slate-100 text-[#60AA2D] font-semibold'>Name</li>
+                                <hr />
+                                <li onClick={logOutUser} className='p-3 cursor-pointer text-red-600 font-bold bg-slate-100'>Logout</li>
                             </ul>
                         </div>
                     </div>
