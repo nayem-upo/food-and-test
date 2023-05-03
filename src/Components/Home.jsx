@@ -13,6 +13,7 @@ const Home = () => {
                 <h1 className='text-white font-bold text-5xl'>Have any question to ask? Call us at</h1>
                 <h1 className='text-white font-bold mt-2 text-5xl'>888 333 9999</h1>
             </div>
+            <FootBanner></FootBanner>
         </div>
     );
 };

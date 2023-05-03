@@ -28,10 +28,6 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>
       },
-      {
-        path: "/details/:id",
-        element: <ChefDetails></ChefDetails>
-      },
     ]
   },
 ]);
