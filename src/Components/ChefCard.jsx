@@ -10,9 +10,9 @@ const ChefCard = ({ chef }) => {
     const { picture, name, years_of_experience, recipes_count, likes, id } = chef;
     const navigate = useNavigate()
     return (
-        <div className='shadow-2xl border w-80 md:w-72 border-[#60AA2D] my-4'>
+        <div className='shadow-2xl dark:shadow-[#44cda242] dark:text-slate-800 border w-80 md:w-72 border-[#60AA2D] my-4 dark:bg-white'>
             <div>
-                <LazyLoad once height={200} offset={100}>
+                <LazyLoad once offset={100}>
                     <img src={picture} className=' md:w-72 md:h-52 object-cover' alt="" />
                 </LazyLoad>
 

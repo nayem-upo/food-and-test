@@ -9,7 +9,7 @@ const FootBanner = () => {
         <div>
             <div className="hero md:py-20 py-6 bg-[#F7F7F7]">
                 <div className="flex-col flex justify-evenly lg:flex-row-reverse">
-                    <img src="/images/chefs/plate.png" className="max-w-sm w-full mx-auto" />
+                    <img src="https://i.ibb.co/WKKghbP/plate.png" className="max-w-sm w-full mx-auto" />
                     <div className='w-[90%] mx-auto'>
                         <p className='font-bold'>It's all about good</p>
                         <h1 className="md:text-5xl text-3xl font-bold">Good Food & Test!</h1>

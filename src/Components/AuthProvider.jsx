@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
     const ref = useRef(null)
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [theme, setTheme] = useState(false)
 
 
     const createUser = (email, password) => {
@@ -54,6 +55,10 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    const toggleTheme = ()=>{
+        setTheme(!theme)
+    }
+
     const userInfo = {
         createUser,
         loginUser,
@@ -66,6 +71,8 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         gitHubLogin,
         passwordReset,
+        toggleTheme,
+        theme,
     }
 
     return (

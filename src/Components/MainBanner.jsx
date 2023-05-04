@@ -10,7 +10,7 @@ const MainBanner = () => {
     return (
         <div>
 
-            <div className="bg-[url('/images/design.png')] md:py-24 py-10 bg-cover text-center">
+            <div className="bg-[url('https://i.ibb.co/0t7CqjJ/design.png')] md:py-24 py-10 bg-cover text-center">
                 <p className='text-orange-500 text-xl'>Do you like cooking?</p>
                 <h1 className='text-white text-6xl font-bold'>Welcome to</h1>
                 <h1 className='text-white text-6xl font-bold'>Food & Test Community</h1>
@@ -39,9 +39,9 @@ const MainBanner = () => {
                 </div>
             </div>
 
-            <div className='md:flex justify-center gap-12 my-20'>
+            <div className='md:flex bg-white dark:bg-slate-800 dark:text-white justify-center gap-12 py-20 '>
                 <div>
-                    <img className='md:w-[515px] w-[370px] mx-auto' src="/images/collage.png" alt="" />
+                    <img className='md:w-[515px] w-[370px] mx-auto' src="https://i.ibb.co/V9mWs87/collage.png" alt="" />
                 </div>
                 <div className='md:w-[400px] w-[90%] md:text-left text-center mx-auto md:mx-0'>
                     <p className='text-orange-500 font-semibold md:text-lg text-xl md:mt-0 mt-4'>Thatix Introduction</p>
