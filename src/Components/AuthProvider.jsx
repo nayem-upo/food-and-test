@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { createContext, useEffect, useRef, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, sendPasswordResetEmail } from "firebase/auth";
 import app from '../firebase.config';
 import { Navigate, useNavigate } from 'react-router-dom';
 
@@ -30,6 +30,9 @@ const AuthProvider = ({ children }) => {
     }
     const gitHubLogin = () => {
         return signInWithPopup(auth, gitHubProvider)
+    }
+    const passwordReset = (email) => {
+        return sendPasswordResetEmail(auth, email)
     }
     const logOut = () => {
         signOut(auth)
@@ -62,6 +65,7 @@ const AuthProvider = ({ children }) => {
         handleScroll,
         googleLogin,
         gitHubLogin,
+        passwordReset,
     }
 
     return (

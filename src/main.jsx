@@ -15,6 +15,7 @@ import Private from './Components/Private';
 import EditInfo from './Components/EditInfo';
 import ErrorPage from './Components/ErrorPage';
 import Blog from './Components/Blog';
+import PassReset from './Components/PassReset';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>
+      },
+      {
+        path: "/reset",
+        element: <PassReset></PassReset>
       },
     ]
   },
